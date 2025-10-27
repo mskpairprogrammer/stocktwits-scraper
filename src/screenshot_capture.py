@@ -2,7 +2,6 @@ import pyautogui
 import time
 import webbrowser
 import os
-from datetime import datetime
 
 def capture_screenshot(url: str, filename: str):
     """
@@ -60,13 +59,8 @@ def capture_screenshot(url: str, filename: str):
     output_dir = "output"
     os.makedirs(output_dir, exist_ok=True)
     
-    # Add timestamp to filename for uniqueness
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    base_name, ext = os.path.splitext(filename)
-    filename_with_timestamp = f"{base_name}_{timestamp}{ext}"
-    
-    # Full path for the screenshot
-    screenshot_path = os.path.join(output_dir, filename_with_timestamp)
+    # Use the provided filename without timestamp
+    screenshot_path = os.path.join(output_dir, filename)
     
     print("Capturing screenshot...")
     try:
