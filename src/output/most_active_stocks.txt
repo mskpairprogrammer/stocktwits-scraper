@@ -7,4 +7,6 @@ Most Active Stocks from StockTwits
 4. $DJT
 5. $TSLA
 6. $NVDA
-7. $OPEN
+7. $RGTI
+8. $OPEN
+9. $INTC

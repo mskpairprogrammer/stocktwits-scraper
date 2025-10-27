@@ -10,14 +10,14 @@ def capture_screenshot(url: str, filename: str):
     """
     print(f"Opening URL: {url}")
     
-    # Open the URL in the default browser
-    webbrowser.open(url)
+    # Open the URL in a new browser window (not tab)
+    webbrowser.open_new(url)  # open_new() opens in a new window instead of tab
     
     # Wait for the page to load completely
     print("Waiting for page to load...")
     time.sleep(5)  # Reduced wait time from 15 to 5 seconds
     
-    # Focus on the browser window and scroll to ensure all 10 stocks are visible
+    # Focus on the browser window for scrolling
     try:
         # Move mouse to center of screen to ensure we're focused on the browser
         screen_width, screen_height = pyautogui.size()
@@ -33,10 +33,16 @@ def capture_screenshot(url: str, filename: str):
         pyautogui.scroll(10)  # Scroll up first
         time.sleep(0.5)  # Reduced from 1 second to 0.5
         
-        # Then scroll down gradually to reveal all stocks
-        for i in range(12):  # 12 scrolls as requested
-            pyautogui.scroll(-4)  # Slightly larger scroll steps
-            time.sleep(0.1)  # Faster execution - reduced from 0.3 to 0.1
+        # Then scroll down gradually to reveal all stocks, but not too much
+        for i in range(10):  # Optimal range - not too little, not too much
+            pyautogui.scroll(-3)  # Smaller scroll steps for precision
+            time.sleep(0.2)  # Slightly slower for better control
+        
+        # Scroll back up slightly to center the Most Active list
+        time.sleep(1)
+        for i in range(2):
+            pyautogui.scroll(2)  # Small upward scrolls
+            time.sleep(0.3)
         
         # Wait a moment for scroll to settle
         time.sleep(2)
