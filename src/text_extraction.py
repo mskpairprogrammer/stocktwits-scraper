@@ -200,7 +200,7 @@ def _get_sample_stocks():
 
 def save_stocks_to_file(stocks, filename="most_active_stocks.txt"):
     """
-    Save extracted stocks to a text file
+    Save extracted stocks to a text file as comma-separated list
     """
     output_dir = "output"
     os.makedirs(output_dir, exist_ok=True)
@@ -213,8 +213,9 @@ def save_stocks_to_file(stocks, filename="most_active_stocks.txt"):
             f.write("=" * 40 + "\n\n")
             
             if stocks:
-                for i, stock in enumerate(stocks, 1):
-                    f.write(f"{i}. ${stock}\n")
+                # Create comma-separated list without dollar signs
+                stock_list = ", ".join(stocks)
+                f.write(f"{stock_list}\n")
             else:
                 f.write("No stocks found.\n")
                 
